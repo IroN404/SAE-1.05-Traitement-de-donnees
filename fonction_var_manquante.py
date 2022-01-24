@@ -1,7 +1,7 @@
-def var_manquante(string):
+def var_manquante(liste):
     count = 0
-    for q in range(1, len(string), 1):
-        L = string[q].split(",")
+    for q in range(1, len(liste), 1):
+        L = liste[q].split(",")
         for i in range(0, len(L), 1):
             if L[i] == "":
                 count = count + 1
