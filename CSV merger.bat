@@ -1,11 +1,10 @@
 @echo off
 chcp 28591 > nul
-set /p VAR1=Entrez Le dossier source ?
-set /p VAR2=Entrez Le dossier destination ?
-cd %VAR1%
-echo Les fichiers CSV présents dans ce répertoire vont être fusionnés
+set /p VAR=Entrez Le rÃ©pertoire de travail : 
+cd %VAR%\data\raw
+echo Les fichiers CSV prÃ©sents dans ce rÃ©pertoire vont Ãªtre fusionnÃ©s
 pause
 copy *.csv netflix.csv
-echo Et déplacés vers le dossier de destination
+echo Et dÃ©placÃ©s vers le dossier de destination
 pause
-move %VAR1%\netflix.csv %VAR2%
+move %VAR%\data\raw\netflix.csv %VAR%\data\cleaned
