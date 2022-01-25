@@ -7,4 +7,4 @@ pause
 copy *.csv netflix.csv
 echo Et déplacés vers le dossier de destination
 pause
-move %VAR%\data\raw\netflix.csv %VAR%\data\cleaned
+move %VAR%\data\raw\netflix.csv %VAR%\data\processed
