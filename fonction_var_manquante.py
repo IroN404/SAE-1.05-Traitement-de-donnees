@@ -14,5 +14,5 @@ def var_manquante(liste):
 fichier_csv = ['show_id,type,title,director,cast,country,date_added,release_year,rating,duration,listed_in,description',',,,,,,,,,,,']
 var_manquante(fichier_csv)
 
-#cette fonction python "var_manquante(LISTE)" compte le nombre de variables manquantes par rapport a une liste de données X et précise la variable a laquelle cela correspond.
+#cette fonction python "var_manquante(LISTE)" compte le nombre de variables manquantes par rapport a une liste de données et précise le nom de la variable a laquelle cette valeur manquante correspond.
 #il l'affiche ensuite sous forme de (par exemple): "Pour la variable "show_id" il manque 0.26% des valeurs (26 valeurs)."
