@@ -1,4 +1,4 @@
-#cette fonction python permet de compter le nombre de films/séries sur le document CSV. 
+#cette fonction python permet de compter le nombre de films/séries sur le document CSV.
 
 import pandas as pds
 
@@ -26,12 +26,22 @@ def mise_en_forme(fichier_csv):
 
 def var_manquante(liste):
     francais = 0
+    f = [0, 0]
     for i in range(1, len(liste)):
+        movie = 0
         L = liste[i].split("|")
         for q in range(0, len(L)):
+            if L[q] == 'Movie':
+                movie = 1
             if L[q] == 'France':
                 francais += 1
-    print("Le pourcentage de films/séries francaises est de {}% ({} films/séries)".format(round(francais/8807*100,2), francais))
+                if movie == 1:
+                    f[0] += 1
+                else:
+                    f[1] += 1
+    print("Le pourcentage de films/séries francaises est de {}% ({} films/séries).".format(round(francais/8807*100,2),francais))
+    print("Le nombre de films francais est de {}.".format(f[0]))
+    print("Le nombre de séries francaises sont de {}.".format(f[1]))
 
 #Ensuite, j'affiche le résultat de facon lisible et compréhensible, en affichant le pourcentage de valeurs manquantes ainsi qu'en précisant le nom de la variable concernée.
 
@@ -45,3 +55,5 @@ mise_en_forme(chemin_csv)
 #______
 #Merci de précisez le chemin absolu du document CSV: U:\bureau\netflix.csv
 #Le pourcentage de films/séries francaises est de 1.41%
+#Le nombre de films francais est de 75.
+#Le nombre de séries francaises sont de 49.
