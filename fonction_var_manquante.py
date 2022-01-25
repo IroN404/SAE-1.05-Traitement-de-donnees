@@ -14,7 +14,7 @@ def mise_en_forme(fichier_csv):
     x = pds.read_csv(fichier_csv)
     c = ['show_id|type|title|director|cast|country|date_added|release_year|rating|duration|listed_in|description']
     s = ""
-    for i in range(0, 8808):
+    for i in range(0, 8807):
         for q in range(0, 12):
             s = s + str(x.iloc[i, q]) + "|"
         c.append(s)
