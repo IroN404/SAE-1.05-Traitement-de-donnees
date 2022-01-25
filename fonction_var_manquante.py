@@ -1,5 +1,4 @@
 import pandas as pds
-
 def mise_en_forme(fichier_csv):
     x = pds.read_csv(fichier_csv)
     c = ['show_id|type|title|director|cast|country|date_added|release_year|rating|duration|listed_in|description']
@@ -10,7 +9,6 @@ def mise_en_forme(fichier_csv):
         c.append(s)
         s = ""
     return var_manquante(c)
-
 def var_manquante(liste):
     var = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for i in range(1, len(liste)):
@@ -21,6 +19,8 @@ def var_manquante(liste):
     L = liste[0].split("|")
     for i in range(0, len(var)):
         print("Pour la variable \"{}\" il manque {}% des valeurs ({} valeurs).".format(L[i], (int(var[i]/(len(liste)-1)*100)), var[i]))
+chemin_csv = str(input("Merci de précisez le chemin absolu du document CSV: "))
+mise_en_forme(chemin_csv)
 
 mise_en_forme('U:\Bureau\draw\dnetflix-1.csv')
 
