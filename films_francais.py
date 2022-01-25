@@ -31,8 +31,7 @@ def var_manquante(liste):
         for q in range(0, len(L)):
             if L[q] == 'France':
                 francais += 1
-    print("Le pourcentage de films/séries francaises est de {}%".format(round(francais/8807*100,2)))
-
+    print("Le pourcentage de films/séries francaises est de {}% ({} films/séries)".format(round(francais/8807*100,2), francais))
 
 #Ensuite, j'affiche le résultat de facon lisible et compréhensible, en affichant le pourcentage de valeurs manquantes ainsi qu'en précisant le nom de la variable concernée.
 
