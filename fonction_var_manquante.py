@@ -22,7 +22,5 @@ def var_manquante(liste):
 chemin_csv = str(input("Merci de précisez le chemin absolu du document CSV: "))
 mise_en_forme(chemin_csv)
 
-mise_en_forme('U:\Bureau\draw\dnetflix-1.csv')
-
 #cette fonction python "var_manquante(LISTE)" compte le nombre de variables manquantes par rapport a une liste de données X et précise la variable a laquelle cela correspond.
 #il l'affiche ensuite sous forme de (par exemple): "Pour la variable "show_id" il manque 0.26% des valeurs (26 valeurs)."
