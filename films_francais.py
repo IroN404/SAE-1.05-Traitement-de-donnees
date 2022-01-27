@@ -1,35 +1,25 @@
-#cette fonction python permet de compter le nombre de films/séries sur le document CSV.
-
 import pandas as pds
-
-#La première chose que je faite est l'importation la librairie "pandas" qui me permettra d'étudier/importer le contenu d'un fichier excel ou csv externe.
-
-
-#Ensuite j'ai défini une fonction que j'ai nommé "mise_en_forme" qui prend en compte un paramètre et celui-ci est le chemin d'accès vers le document csv.
-#Cette fonction me permet de récupérer toutes les données du fichier csv et les répartir dans une variable liste.
-#Chaque ligne du fichier csv est enregistrée dans la liste comme un élement string, où chaque variable de la ligne est séparé par un caractère "|" ce qui me permettra de traiter les différents élements plus tard dans mon programme.
 
 def mise_en_forme(fichier_csv):
     x = pds.read_csv(fichier_csv)
     c = ['show_id|type|title|director|cast|country|date_added|release_year|rating|duration|listed_in|description']
-    s = ""
     for i in range(0, 8807):
+        s = ""
         for q in range(0, 12):
             s = s + str(x.iloc[i, q]) + "|"
         c.append(s)
-        s = ""
-    return var_manquante(c)
+    return c
 
-#J'envoie ensuite cette variable liste que j'ai créé à ma deuxième fonction qui traitera la liste de facon a etudier toutes les différents variables pour voir celles qui manquent.
+def split(x, i, n):
+    r = x[i].split("|")
+    return r[n]
 
-#Les variables manquantes sont découverte en faisant une petite comparaison pour voir si la valeur de la variable est égale à 'nan'
-
-def var_manquante(liste):
+def France_film(x):
     francais = 0
     f = [0, 0]
-    for i in range(1, len(liste)):
+    for i in range(1, len(x)):
         movie = 0
-        L = liste[i].split("|")
+        L = x[i].split("|")
         for q in range(0, len(L)):
             if L[q] == 'Movie':
                 movie = 1
@@ -39,21 +29,43 @@ def var_manquante(liste):
                     f[0] += 1
                 else:
                     f[1] += 1
-    print("Le pourcentage de films/séries francaises est de {}% ({} films/séries).".format(round(francais/8807*100,2),francais))
-    print("Le nombre de films francais est de {}.".format(f[0]))
-    print("Le nombre de séries francaises sont de {}.".format(f[1]))
+    print("Le pourcentage de films/séries francais est de {}% ({} films/séries).".format(round(francais/8807*100,2),francais))
+    print("Le nombre de films francais est {}.".format(f[0]))
+    print("Le nombre de séries francaises est {}.".format(f[1]))
 
-#Ensuite, j'affiche le résultat de facon lisible et compréhensible, en affichant le pourcentage de valeurs manquantes ainsi qu'en précisant le nom de la variable concernée.
+def duree_film_serie(x, test):
+    MO = []
+    TV = []
+    for i in range(1, len(x)):
+        s = split(x, i, 9).split(" ")
+        if s[0].isdigit():
+            if split(x, i, 1) == "Movie":
+                MO.append(int(s[0]))
+            else:
+                TV.append(int(s[0]))
+    MO.sort()
+    TV.sort()
+    if test == 0:
+        return MO
+    if test == 1:
+        return TV
 
-chemin_csv = str(input("Merci de précisez le chemin absolu du document CSV: "))
-mise_en_forme(chemin_csv)
+def ComputeMean(x):
+    print("La moyenne de la durée des films est de {} minute(s)".format(round(sum(duree_film_serie(x, 0))/(len(duree_film_serie(x, 0))+1),2)))
+    print("La moyenne de la durée des séries est de {} saison(s)".format(round(sum(duree_film_serie(x, 1))/(len(duree_film_serie(x, 1))+1),2)))
+    mean = [round(sum(duree_film_serie(x, 0))/(len(duree_film_serie(x, 0))+1), 2), round(sum(duree_film_serie(x, 1))/(len(duree_film_serie(x, 1))+1),2)]
+    return mean
 
-#Je demande a l'utilisateur de préciser le chemin absolu du document CSV.
+def ComputeMedian(x):
+    print(duree_film_serie(x, 0)[int(len(duree_film_serie(x, 0))/2)])
+    print(duree_film_serie(x, 1)[int(len(duree_film_serie(x, 1)) / 2)])
+    median = [duree_film_serie(x, 0)[int(len(duree_film_serie(x, 0))/2)], duree_film_serie(x, 1)[int(len(duree_film_serie(x, 1)) / 2)]]
+    return median
 
-
-#L'affichage du résultat du programme ressemble à celui-ci:
-#______
-#Merci de précisez le chemin absolu du document CSV: U:\bureau\netflix.csv
-#Le pourcentage de films/séries francaises est de 1.41%
-#Le nombre de films francais est de 75.
-#Le nombre de séries francaises sont de 49.
+L = mise_en_forme("../../data/processed/netflix.csv")
+print("_____________________")
+France_film(L)
+print("_____________________")
+ComputeMean(L)
+print("_____________________")
+ComputeMedian(L)
