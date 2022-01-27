@@ -27,15 +27,19 @@ def mise_en_forme(fichier_csv):
 
 def var_manquante(liste):
     var = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    count = 0
     for i in range(1, len(liste)):
         L = liste[i].split("|")
         for q in range(0, len(L)):
+            if L[q].isnumeric():
+                if int(L[q]) < 1874:
+                    count = count + 1
             if L[q] == 'nan':
                 var[q] += 1
     L = liste[0].split("|")
     for i in range(0, len(var)):
         print("Pour la variable \"{}\" il manque {}% des valeurs ({} valeurs).".format(L[i], round(var[i]/(len(liste)-1)*100,2), var[i]))
-
+    print("Il y a {} valeur(s) abérantes".format(count))
 
 #Ensuite, j'affiche le résultat de facon lisible et compréhensible, en affichant le pourcentage de valeurs manquantes ainsi qu'en précisant le nom de la variable concernée.
 
