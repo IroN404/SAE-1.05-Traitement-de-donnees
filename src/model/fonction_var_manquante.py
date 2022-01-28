@@ -64,3 +64,18 @@ def var_manquante(liste):
 
 var_manquante(mise_en_forme("../../data/processed/netflix.csv"))
 #J'execute la fonction avec le chemin du fichier.
+
+#L'affichage du programme est le suivant:
+#Pour la variable "show_id" il manque 0.0% des valeurs (0 valeurs).
+#Pour la variable "type" il manque 0.0% des valeurs (0 valeurs).
+#Pour la variable "title" il manque 0.0% des valeurs (0 valeurs).
+#Pour la variable "director" il manque 29.9% des valeurs (2633 valeurs).
+#Pour la variable "cast" il manque 9.37% des valeurs (825 valeurs).
+#Pour la variable "country" il manque 9.44% des valeurs (831 valeurs).
+#Pour la variable "date_added" il manque 0.12% des valeurs (11 valeurs).
+#Pour la variable "release_year" il manque 0.0% des valeurs (0 valeurs).
+#Pour la variable "rating" il manque 0.05% des valeurs (4 valeurs).
+#Pour la variable "duration" il manque 0.03% des valeurs (3 valeurs).
+#Pour la variable "listed_in" il manque 0.0% des valeurs (0 valeurs).
+#Pour la variable "description" il manque 0.0% des valeurs (0 valeurs).
+#Il y a 15 valeur(s) abérantes
