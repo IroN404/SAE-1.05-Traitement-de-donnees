@@ -32,7 +32,7 @@ def is_float(x) -> bool:
 #Si cette date est inférieure, elle est donc une valeur abbérante.
 def var_manquante(liste):
     var = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    count = 0
+    var2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for i in range(1, len(liste)):
         L = liste[i].split("|")
         for q in range(0, len(L)):
@@ -40,25 +40,27 @@ def var_manquante(liste):
                 var[q] += 1
             elif q == 0:
                 if str(L[0])[:1] != "s":
-                    count = count + 1
+                    var2[q] += 1
             elif q == 1:
                 if L[q] != 'Movie' and L[q] != 'TV Show':
-                    count = count + 1
+                    var2[q] += 1
             elif q == 2 or q == 3 or q == 4 or q == 5 or q == 6 or q == 8 or q == 9 or q == 10 or q == 11:
                 if str(L[q]) != L[q]:
-                    count = count + 1
+                    var2[q] += 1
                 if L[q].isnumeric():
-                    count = count + 1
+                    var2[q] += 1
             elif q == 7:
                 if is_float(L[q]):
                     if float(L[q]) < 1874:
-                        count = count + 1
+                        var2[q] += 1
                 else:
-                    count = count + 1
+                    var2[q] += 1
     L = liste[0].split("|")
     for i in range(0, len(var)):
-        print("Pour la variable \"{}\" il manque {}% des valeurs ({} valeurs).".format(L[i], round(var[i]/(len(liste)-1)*100,2), var[i]))
-    print("Il y a {} valeur(s) abérantes".format(count))
+        print("Pour la variable \"{}\" il manque {}% des valeurs ({} valeurs), et {}% de ses valeurs sont abérantes ({} valeurs).".format(L[i], round(var[i]/(len(liste)-1)*100,2), var[i], round(var2[i]/(len(liste)-1)*100,2), var2[i]))
+    print("_______________________________")
+    print("Il y a {} valeur(s) manquantes".format(sum(var)))
+    print("Il y a {} valeur(s) abérantes".format(sum(var2)))
 
 #Ensuite, j'affiche le résultat de facon lisible et compréhensible, en affichant le pourcentage de valeurs manquantes ainsi qu'en précisant le nom de la variable concernée.
 
@@ -66,16 +68,19 @@ var_manquante(mise_en_forme("../../data/processed/netflix.csv"))
 #J'execute la fonction avec le chemin du fichier.
 
 #L'affichage du programme est le suivant:
-#Pour la variable "show_id" il manque 0.0% des valeurs (0 valeurs).
-#Pour la variable "type" il manque 0.0% des valeurs (0 valeurs).
-#Pour la variable "title" il manque 0.0% des valeurs (0 valeurs).
-#Pour la variable "director" il manque 29.9% des valeurs (2633 valeurs).
-#Pour la variable "cast" il manque 9.37% des valeurs (825 valeurs).
-#Pour la variable "country" il manque 9.44% des valeurs (831 valeurs).
-#Pour la variable "date_added" il manque 0.12% des valeurs (11 valeurs).
-#Pour la variable "release_year" il manque 0.0% des valeurs (0 valeurs).
-#Pour la variable "rating" il manque 0.05% des valeurs (4 valeurs).
-#Pour la variable "duration" il manque 0.03% des valeurs (3 valeurs).
-#Pour la variable "listed_in" il manque 0.0% des valeurs (0 valeurs).
-#Pour la variable "description" il manque 0.0% des valeurs (0 valeurs).
+
+#Pour la variable "show_id" il manque 0.0% des valeurs (0 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "type" il manque 0.0% des valeurs (0 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "title" il manque 0.0% des valeurs (0 valeurs), et 0.15% de ses valeurs sont abérantes (13 valeurs).
+#Pour la variable "director" il manque 29.9% des valeurs (2633 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "cast" il manque 9.37% des valeurs (825 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "country" il manque 9.44% des valeurs (831 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "date_added" il manque 0.12% des valeurs (11 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "release_year" il manque 0.0% des valeurs (0 valeurs), et 0.02% de ses valeurs sont abérantes (2 valeurs).
+#Pour la variable "rating" il manque 0.05% des valeurs (4 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "duration" il manque 0.03% des valeurs (3 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "listed_in" il manque 0.0% des valeurs (0 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#Pour la variable "description" il manque 0.0% des valeurs (0 valeurs), et 0.0% de ses valeurs sont abérantes (0 valeurs).
+#_______________________________
+#Il y a 4307 valeur(s) manquantes
 #Il y a 15 valeur(s) abérantes
